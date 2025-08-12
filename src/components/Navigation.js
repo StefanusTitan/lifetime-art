@@ -12,8 +12,11 @@ export default function Navigation() {
   const menuRef = useRef(null);
   const mobileLinksRef = useRef([]);
   const menuTimelineRef = useRef(null);
+  const scrollTimelineRef = useRef(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const navigationLinks = [
     { href: '/#about', label: 'About' },
@@ -46,12 +49,80 @@ export default function Navigation() {
     const id = hash.replace('#', '');
     const el = document.getElementById(id);
     if (!el) return;
-    // Determine offset from top (e.g., fixed header height)
+    
+    // Determine offset from top (fixed header height)
     const header = navRef.current;
-    const offset = header ? header.getBoundingClientRect().height : 0;
-    const top = window.scrollY + el.getBoundingClientRect().top; // small spacing
-    window.scrollTo({ top, behavior: 'smooth' });
+    const offset = header ? header.getBoundingClientRect().height + 20 : 80; // Add some padding
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - offset;
+    
+    window.scrollTo({ 
+      top: offsetPosition, 
+      behavior: 'smooth' 
+    });
   };
+
+  // Handle scroll behavior for mobile sticky navigation
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Only apply hide/show behavior on mobile screens
+      if (window.innerWidth < 1024) { // lg breakpoint
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down and past 100px
+          if (isVisible) {
+            setIsVisible(false);
+            gsap.to(navRef.current, {
+              y: '-100%',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          }
+        } else if (currentScrollY < lastScrollY) {
+          // Scrolling up
+          if (!isVisible) {
+            setIsVisible(true);
+            gsap.to(navRef.current, {
+              y: '0%',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          }
+        }
+      } else {
+        // Always visible on desktop
+        if (!isVisible) {
+          setIsVisible(true);
+          gsap.set(navRef.current, { y: '0%' });
+        }
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledHandleScroll);
+    window.addEventListener('resize', handleScroll); // Reset on resize
+
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [lastScrollY, isVisible]);
 
   useEffect(() => {
     // Fade in animation for the nav
@@ -62,6 +133,11 @@ export default function Navigation() {
         duration: 0.7,
         ease: 'power2.out',
       });
+    }
+
+    // Initialize GSAP scroll timeline for navigation hide/show
+    if (navRef.current) {
+      scrollTimelineRef.current = gsap.timeline({ paused: true });
     }
 
     // Desktop hover underline effects
@@ -95,6 +171,10 @@ export default function Navigation() {
 
     return () => {
       cleanupFns.forEach((fn) => fn());
+      if (scrollTimelineRef.current) {
+        scrollTimelineRef.current.kill();
+        scrollTimelineRef.current = null;
+      }
     };
   }, []);
 
@@ -170,11 +250,37 @@ export default function Navigation() {
     };
   }, []);
 
+  // Add body padding for fixed navigation on mobile
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const updateBodyPadding = () => {
+      const nav = navRef.current;
+      if (nav && window.innerWidth < 1024) { // lg breakpoint
+        const navHeight = nav.getBoundingClientRect().height;
+        document.body.style.paddingTop = `${navHeight}px`;
+      } else {
+        document.body.style.paddingTop = '';
+      }
+    };
+
+    // Set initial padding
+    updateBodyPadding();
+    
+    // Update on resize
+    window.addEventListener('resize', updateBodyPadding);
+    
+    return () => {
+      window.removeEventListener('resize', updateBodyPadding);
+      document.body.style.paddingTop = '';
+    };
+  }, []);
+
   return (
     <>
       <nav
         ref={navRef}
-        className="relative 2xl:absolute max-2xl:flex inset-x-0 mx-auto max-w-[1440px] flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:mx-[20.5px] max-sm:my-[19.5px] py-[15px] lg:py-10 z-[100]"
+        className={`fixed top-0 left-0 right-0 w-full flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:px-[20.5px] py-[15px] lg:py-10 z-[100] bg-black/80 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none`}
       >
         <a className="flex gap-[4.8px] align-middle items-center">
           <svg

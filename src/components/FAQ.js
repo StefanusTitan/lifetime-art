@@ -231,7 +231,7 @@ function FAQAccordions() {
   ];
 
   return (
-    <div className="flex flex-col min-[1440px]:w-[800px] max-[1281px]:w-[1200px] max-[1025px]:w-[944px] max-sm:w-[295px] gap-5">
+    <div className="flex flex-col min-[1440px]:w-[800px] max-[1440px]:w-[1200px] max-[1280px]:w-[944px] max-sm:w-[295px] gap-5">
       {faqData.map(({ panel, question, answer }) => (
         <div key={panel} className="flex flex-col items-start px-5 py-6 bg-[#FAFAFA] border border-[#E6E6E6] rounded-[12px]">
           <button

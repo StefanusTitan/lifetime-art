@@ -69,8 +69,8 @@ export default function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Only apply hide/show behavior on mobile screens
-      if (window.innerWidth < 1024) { // lg breakpoint
+      // Only apply hide/show behavior on mobile screens (below sm breakpoint)
+      if (window.innerWidth < 640) { // sm breakpoint
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           // Scrolling down and past 100px
           if (isVisible) {
@@ -93,11 +93,11 @@ export default function Navigation() {
           }
         }
       } else {
-        // Always visible on desktop
+        // Always visible and reset position on sm and up
         if (!isVisible) {
           setIsVisible(true);
-          gsap.set(navRef.current, { y: '0%' });
         }
+        gsap.set(navRef.current, { y: '0%' });
       }
       
       setLastScrollY(currentScrollY);
@@ -250,13 +250,13 @@ export default function Navigation() {
     };
   }, []);
 
-  // Add body padding for fixed navigation on mobile
+  // Add body padding for fixed navigation on mobile only
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
     const updateBodyPadding = () => {
       const nav = navRef.current;
-      if (nav && window.innerWidth < 1024) { // lg breakpoint
+      if (nav && window.innerWidth < 640) { // sm breakpoint
         const navHeight = nav.getBoundingClientRect().height;
         document.body.style.paddingTop = `${navHeight}px`;
       } else {
@@ -280,7 +280,7 @@ export default function Navigation() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 w-full flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:px-[20.5px] py-[15px] lg:py-10 z-[100] bg-black/80 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none`}
+        className={`max-sm:fixed max-sm:top-0 max-sm:left-0 max-sm:right-0 max-sm:w-full sm:relative sm:2xl:absolute sm:inset-x-0 sm:mx-auto sm:max-w-[1440px] flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:px-[20.5px] py-[15px] lg:py-10 z-[100] max-sm:bg-black/80 max-sm:backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none`}
       >
         <a className="flex gap-[4.8px] align-middle items-center">
           <svg

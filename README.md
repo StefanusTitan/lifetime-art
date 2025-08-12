@@ -34,3 +34,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## DEPLOYED ON
+https://lifetimeart-opal.vercel.app/
+
+## Mobile touches
+1. Auto-height for our work carousel to accommodate different card heights.
+2. Sticky navigation header for mobile
+3. Disappearing header when scrolling downwards shows again when stop scrolling or scrolling up
+4. Mobile-only Social Icons Hover Animation
+5. mobile-only Form Input Focus Animation

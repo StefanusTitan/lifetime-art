@@ -66,7 +66,7 @@ function OurWorkTopSection() {
         <span className="font-semibold text-base leading-[14px] flex items-center">Our work</span>
       </div>
       <h3 ref={headingRef} className="text-center font-medium text-[48px] leading-[120%] tracking-[-0.8px] text-[#101014]">Get inspired by our work</h3>
-      <span ref={descriptionRef} className="text-center font-normal text-[20px] leading-[170%] tracking-[-0.3px] text-[#3D3D47]">See how we've transformed homes with our expert craftsmanship and attention to detail.</span>
+      <span ref={descriptionRef} className="text-center font-normal text-[20px] leading-[170%] tracking-[-0.3px] text-[#3D3D47]">See how we&apos;ve transformed homes with our expert craftsmanship and attention to detail.</span>
     </div>
   );
 }

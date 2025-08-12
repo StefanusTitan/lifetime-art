@@ -116,7 +116,7 @@ const TestimonialCard = forwardRef(function TestimonialCard(_, ref) {
         </defs>
       </svg>
       <p className="w-[192px] h-[104px] font-normal text-sm leading-[20.8px] tracking-[-0.1px] align-middle">
-        "LifetimeArt has been a game-changer for my home. Their ability to blend functionality with exquisite design is unparalleled."
+        &ldquo;LifetimeArt has been a game-changer for my home. Their ability to blend functionality with exquisite design is unparalleled.&rdquo;
       </p>
     </div>
   );

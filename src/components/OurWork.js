@@ -274,8 +274,8 @@ function WorkCards() {
     <>
       {/* Desktop/Tablet Layout */}
       <div className="hidden sm:flex flex-col lg:gap-5">
-        {cards.map((card) => (
-          <WorkCard key={card.title} card={card} />
+        {cards.map((card, index) => (
+          <WorkCard key={card.title} card={card} index={index} />
         ))}
       </div>
 
@@ -295,7 +295,7 @@ function WorkCards() {
         >
           {cards.map((card, index) => (
             <SwiperSlide key={card.title} ref={(el) => mobileCardsRef.current[index] = el}>
-              <WorkCard card={card} />
+              <WorkCard card={card} index={index} />
             </SwiperSlide>
           ))}
         </Swiper>

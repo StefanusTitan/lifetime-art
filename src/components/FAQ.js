@@ -81,8 +81,8 @@ function SectionTitle() {
   }, []);
 
   return (
-    <div className="flex flex-col min-[1440px]:w-[400px] max-sm:w-[295px] max-[1281px]:items-center">
-      <div className="flex flex-col gap-2 max-[1281px]:items-center">
+    <div className="flex flex-col min-[1440px]:w-[400px] max-sm:w-[295px] max-[1440px]:items-center">
+      <div className="flex flex-col gap-2 max-[1440px]:items-center">
         <div 
           ref={pillRef}
           className="flex flex-row items-center px-3 py-2 gap-[6px] bg-[#28282C] rounded-[24px] w-fit"
@@ -273,7 +273,7 @@ function FAQAccordions() {
 
 export default function FAQ() {
   return (
-    <div className="flex min-[1440px]:w-[1440px] px-20 py-30 gap-20 max-[1281px]:flex-col max-[1281px]:px-10 max-[1281px]:py-15">
+  <div className="flex min-[1440px]:w-[1440px] px-20 py-30 gap-20 max-[1440px]:flex-col max-[1440px]:px-10 max-[1440px]:py-15">
       <SectionTitle />
       <FAQAccordions />
     </div>

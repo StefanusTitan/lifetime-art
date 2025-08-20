@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 function MainContent({ statusRef, headlineRef, paragraphRef, ctaRef }) {
   return (
     <div
-      className="flex flex-col 2xl:justify-center max-2xl:justify-end 2xl:w-[547.28px] lg:h-[695px] min-[1440px]:w-[547.28px] max-[1281px]:w-full max-sm:h-[695px] self-stretch max-[1281px]:bg-[linear-gradient(180deg,_rgba(16,16,20,0.8)_0%,_rgba(16,16,20,0.8)_100%),url('/heroImage.jpg')] max-[1281px]:bg-cover max-[1281px]:bg-center max-[1281px]:bg-no-repeat max-[1281px]:rounded-[12px] max-2xl:px-5 max-2xl:pb-12"
+      className="flex flex-col 2xl:justify-center max-2xl:justify-end 2xl:w-[547.28px] lg:h-[695px] min-[1440px]:w-[547.28px] max-[1440px]:w-full max-sm:h-[695px] self-stretch max-[1440px]:bg-[linear-gradient(180deg,_rgba(16,16,20,0.8)_0%,_rgba(16,16,20,0.8)_100%),url('/heroImage.jpg')] max-[1440px]:bg-cover max-[1440px]:bg-center max-[1440px]:bg-no-repeat max-[1440px]:rounded-[12px] max-2xl:px-5 max-2xl:pb-12"
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col max-sm:gap-1">
@@ -86,7 +86,7 @@ function HeroImage({ heroRef, testimonialRef }) {
   return (
     <div
       ref={heroRef}
-      className="w-[652.72px] h-[835.5px] relative max-[1281px]:hidden self-center"
+      className="w-[652.72px] h-[835.5px] relative max-[1440px]:hidden self-center"
     >
       <Image src="/heroImage.jpg" alt="Hero Image" fill className="object-cover rounded-[12px]" priority />
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-[20%] rounded-t-[12px] bg-gradient-to-b from-[#101014] to-transparent opacity-80 z-[1]" />
@@ -196,7 +196,7 @@ export default function Hero() {
   return (
     <>
       <section id="hero" className="bg-[var(--background)]">
-        <div ref={rootRef} className="flex-1 flex h-full max-w-[1440px] 2xl:w-[1440px] 2xl:px-20 max-2xl:px-5 2xl:py-6 max-2xl:pb-5 justify-between items-stretch 2xl:mx-auto 2xl:self">
+        <div ref={rootRef} className="flex-1 flex h-full max-w-[1440px] 2xl:w-[1440px] 2xl:px-20 max-2xl:px-5 2xl:py-6 max-2xl:pb-5 max-sm:pt-5 justify-between items-stretch 2xl:mx-auto 2xl:self">
           <MainContent
             statusRef={statusRef}
             headlineRef={headlineRef}

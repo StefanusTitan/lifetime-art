@@ -280,7 +280,7 @@ export default function Navigation() {
     <>
       <nav
         ref={navRef}
-        className={`max-sm:fixed max-sm:top-0 max-sm:left-0 max-sm:right-0 max-sm:w-full sm:relative sm:2xl:absolute sm:inset-x-0 sm:mx-auto sm:max-w-[1440px] flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:px-[20.5px] py-[15px] lg:py-10 z-[100] max-sm:bg-black/80 max-sm:backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none`}
+        className={`max-sm:fixed max-sm:top-0 max-sm:left-0 max-sm:right-0 max-sm:w-full 2xl:absolute min-[1440px]:absolute max-[1440px]:relative sm:inset-x-0 sm:mx-auto sm:max-w-[1440px] flex justify-between items-center 2xl:px-20 lg:px-[30px] px-5 max-sm:px-[20.5px] py-[15px] lg:py-10 z-[100] max-sm:bg-black/80 max-sm:backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none`}
       >
         <a className="flex gap-[4.8px] align-middle items-center">
           <svg

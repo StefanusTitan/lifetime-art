@@ -32,7 +32,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <div ref={containerRef} className="flex gap-20 2xl:px-20 lg:px-10 py-30 max-w-[1440px] self-center max-sm:flex-col max-sm:px-10">
+    <div ref={containerRef} className="flex gap-20 2xl:px-20 sm:px-10 py-30 max-w-[1440px] self-center max-sm:flex-col max-sm:px-10">
       <div className="2xl:w-[600px] xl:w-[560px] lg:w-[432px]">
         <div ref={pillRef} className="flex flex-row items-center px-3 py-2 gap-[6px] bg-[#28282C] rounded-[24px] w-fit">
           <span className="font-semibold text-base leading-[14px] flex items-center">About us</span>

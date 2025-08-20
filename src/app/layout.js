@@ -21,8 +21,8 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: "Lifetime Art",
-  description: "Lifetime Art",
+  title: "LifetimeArt",
+  description: "LifetimeArt",
 };
 
 export default function RootLayout({ children }) {
